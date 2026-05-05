@@ -7,16 +7,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        body { font-family: "Yusei Magic", sans-serif; background: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; flex-direction: column; gap: 20px; padding: 20px 0; }
-        .co { background-color: #ffffff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .sub-co { width: 340px; background-color: #ffffff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); font-size: 13px; text-align: center; }
-        .embed-box { width: 300px; border-left: 4px solid #ff4500; background-color: rgba(0, 0, 0, 0.03); padding: 4px 6px; margin: 10px auto; border-radius: 4px; font-size: 13px; white-space: pre-wrap; }
-        #log-container { width: 100%; min-height: 120px; background-color: #f4f4f4; border: 1px solid #ddd; font-size: 12px; color: #333; padding: 10px; word-break: break-all; white-space: pre-wrap; height: 30px; overflow-y: auto; }
-        #nerv { width: 100px; height: 20px; background-color: #000000; display: flex; border-radius: 5px; border: none; color: #ffffff; font-family: inherit; justify-content: center; align-items: center; }
-        #tokens, #channel, #thread-name, #thread-message, #loop-count, #wait-time { border: 2px solid #cecece; border-radius: 8px; padding: 5px; outline: none; width: 280px; font-family: inherit; }
-        .input-row { display: flex; gap: 10px; width: 280px; }
-        .input-row input { flex: 1; border: 2px solid #cecece; border-radius: 8px; padding: 5px; outline: none; min-width: 0; }
-        .server-link { display: inline-block; background-color: #5865F2; color: white; text-decoration: none; padding: 5px 20px; border-radius: 5px; font-size: 14px; }
+
+        body {
+            font-family: "Yusei Magic", sans-serif;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 0;
+            color: #ffffff;
+        }
+
+        .co {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ff0000;
+        }
+
+        .sub-co {
+            width: 340px;
+            background-color: #111;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .embed-box {
+            width: 300px;
+            border-left: 4px solid #ff0000;
+            background-color: rgba(255, 0, 0, 0.05);
+            padding: 4px 6px;
+            margin: 10px auto;
+            border-radius: 4px;
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        #log-container {
+            width: 100%;
+            min-height: 120px;
+            background-color: #000;
+            border: 1px solid #ff0000;
+            font-size: 12px;
+            color: #ff4d4d;
+            padding: 10px;
+            word-break: break-all;
+            white-space: pre-wrap;
+            height: 30px;
+            overflow-y: auto;
+        }
+
+        #nerv {
+            width: 100px;
+            height: 20px;
+            background-color: #ff0000;
+            display: flex;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            font-family: inherit;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #tokens, #channel, #thread-name, #thread-message, #loop-count, #wait-time {
+            border: 2px solid #ff0000;
+            background-color: #000;
+            color: #fff;
+            border-radius: 8px;
+            padding: 5px;
+            outline: none;
+            width: 280px;
+            font-family: inherit;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            width: 280px;
+        }
+
+        .input-row input {
+            flex: 1;
+            border: 2px solid #ff0000;
+            background-color: #000;
+            color: #fff;
+            border-radius: 8px;
+            padding: 5px;
+            outline: none;
+            min-width: 0;
+        }
+
+        .server-link {
+            display: inline-block;
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            padding: 5px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
