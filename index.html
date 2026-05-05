@@ -127,27 +127,32 @@
 <body>
     <div class="co">
         <div style="text-align: center;">
-            <h1 style="color:#ff5b5b;">NERV Forum Tool</h1>
-            <p style="opacity: 0.35;">Command Interface</p>
-            <div class="embed-box">NERV製のツールです<br>UIデザインのみ変更</div>
+            <h1>NERV Forum Tool</h1>
+            <p style="opacity: 0.2;">ディスコードでフォーラムスパムできます</p>
+            <div class="embed-box">NERV製のツールです<br>文末にクレジットがつきます！</div>
         </div>
-
         <div><textarea id="channel" rows="1" cols="30" placeholder="フォーラムのチャンネルID"></textarea></div>
         <div><textarea id="thread-name" rows="1" cols="30" placeholder="投稿タイトル"></textarea></div>
-        <div><textarea id="thread-message" rows="1" cols="30" placeholder="メッセージ"></textarea></div>
+        <div><textarea id="thread-message" rows="1" cols="30" placeholder="フォーラムのメッセージ(ランダム文字列使用で任意)"></textarea></div>
         <div><textarea id="tokens" rows="2" cols="30" placeholder="トークン（複数可）"></textarea></div>
-
         <div class="input-row">
             <input type="number" id="loop-count" placeholder="ループ数">
             <input type="number" id="wait-time" placeholder="間隔(ms)">
         </div>
-
-        <div class="input-row" style="justify-content: center;">
-            <button id="nerv">生成</button>
-        </div>
-
+        <div class="input-row" style="justify-content: center; align-items: center; font-size: 13px;">
+    <span>ランダム文字列</span>
+    <input type="checkbox" id="random-toggle">
+    <div id="random-len-container" style="display: none;">
+        <input type="number" id="random-len" placeholder="文字数" style="width: 60px; margin-left: 10px; font-family: inherit;">
+    </div>
+</div>
+<div class="input-row">
+    <button id="nerv">生成</button>
+    <button id="stop" style="background-color: #ff4500; color: white; border: none; border-radius: 5px; flex: 1; display: none;">停止</button>
+</div>
+        <!-- <div><button id="nerv">生成</button></div> -->
         <div id="log-container"></div>
         <p style="opacity: 0.4; font-size: 12px; margin: -5px; margin-top: 0px;">-  -</p>
     </div>
-</body>
-</html>
+
+    <script>let vmD=typeof globalThis!=='undefined'?globalThis:typeof window!=='undefined'?window:global,vmP_dbeff0=vmD['vmP_dbeff0']||(vmD['vmP_dbeff0']={});const vmi_86ecbf=(function(){var w=Object['defineProperty'],Z=Object['create'],v=Object['getOwnPropertyDescriptor'],c=Object['getOwnPropertyNames'],i=Object['getOwnPropertySymbols'],P=Object['setPrototypeOf'],U=Object['getPrototypeOf'],T=Function['prototype']['call'],D=Function['prototype']['apply'],J=Reflect['apply'],b=WeakMap['prototype']['set'],H=WeakMap['prototype']['get'],G=WeakMap['prototype']['has'],o=WeakSet['prototype']['add'],F=WeakSet['prototype']['has'];let d=['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'],l={'0':0x170,'1':0x197,'2':0x47,'3':0x1fa,'4':0x115,'5':0xc0,'6':0xad,'7':0x174,'8':0xf0,'9':0x71,'10':0x152,'11':0x1f5,'12':0x10a,'13':0xb4,'14':0x3c,'15':0x19b,'16':0x157,'17':0x181,'18':0x150,'19':0x114,'20':0x1c5,'21':0x79,'22':0xd4,'23':0x28,'24':0x96,'25':0x124,'26':0x1e8,'27':0xfa,'28':0x23,'29':0x73,'32':0xe8,'40':0x125,'41':0x1ee,'42':0x18c,'43':0x132,'44':0x17c,'45':0xde,'46':0x1,'47':0x2c,'50':0xf,'51':0x17f,'52':0x100,'53':0xe3,'54':0x62,'55':0x1ca,'56':0x13c,'57':0x1fb,'58':0x142,'59':0xed,'60':0xb2,'61':0xd5,'62':0x198,'63':0x15e,'64':0x110,'65':0x1f7,'70':0xd2,'71':0xbe,'72':0x14a,'73':0xe7,'74':0xa3,'75':0x3d,'76':0xa8,'77':0xa,'78':0x10c,'79':0x17b,'80':0x19a,'81':0x8a,'82':0xb,'83':0x78,'84':0x17e,'90':0x1a9,'91':0x18,'92':0x163,'93':0x1cc,'94':0x14d,'95':0x9c,'100':0xc1,'101':0x1ae,'102':0x26,'103':0x14c,'104':0x1c0,'105':0x1a,'106':0x13,'107':0x18a,'110':0xcb,'111':0x7b,'112':0x109,'120':0x169,'121':0x1b8,'122':0x6b,'123':0x1b4,'124':0x15b,'125':0x4b,'126':0xc6,'127':0x85,'128':0x18d,'129':0x182,'130':0xff,'131':0xfc,'132':0x1c9,'140':0x1a6,'141':0x12d,'14
